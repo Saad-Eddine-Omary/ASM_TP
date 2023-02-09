@@ -6,12 +6,12 @@ section .data
 
 section .text
 _start:
-    mov eax, 4;
-    mov ebx, 1;
-    mov ecx, string;
-    mov edx, 5;
-    int 80h;
+    mov eax, 4;sys code for write
+    mov ebx, 1;stdout "file descriptor"
+    mov ecx, string;the variable
+    mov edx, 5;size of the variable (characters + \n)
+    int 80h; syscall
 
-    mov eax, 1;
+    mov eax, 1; return 0
     mov ebx, 0;
     int 80h;
