@@ -17,7 +17,7 @@ _start:
     int 80h
 
     mov al, x[0];index in string array, will show in radare2 the ascii 
-    cmp al, "4"
+    cmp al, "4"; 4 between quotes because the input is an ascii value
     jne error
 
     mov al,x[1]
