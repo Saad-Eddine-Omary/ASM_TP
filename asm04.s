@@ -6,8 +6,8 @@ section .data
 
 section .bss
 
-    x resq  4
-
+    x resq  10
+    i resb  1
 section .text
 
 _start:
@@ -15,20 +15,23 @@ _start:
     mov rax, 3;
     mov rbx, 0;stdin
     mov rcx, x;pointer
-    mov rdx, 5
+    mov rdx, 10
     int 80h
+    xor rcx,rcx
 
-    mov rcx, [rcx]
-    sub cl, 0x30
-    cmp ch, 0x0a
+loop:
+    xor r8,r8
+    mov r8b, x[ecx]
+    cmp r8b, 0x0a
     je clean_buff
-
-
+    inc ecx
+    jmp loop
 
 clean_buff:
-    xor ch,ch
+    xor r8b, r8b
     xor bl,bl
-    mov al, cl
+    mov al, x[ecx-1]
+    sub al, 0x30
     mov bl, 0x02
     div bl
     cmp ah,0
