@@ -23,6 +23,10 @@ _start:
     mov al,x[1]
     cmp al,"2"
     jne error
+    
+    mov al,x[2]
+    cmp al,0
+    jne error
 
     mov eax, 4;
     mov ebx, 1;stdout
