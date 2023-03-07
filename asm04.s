@@ -13,26 +13,25 @@ section .text
 
 _start:
     ; Scanf
-    mov rax, 3
-    mov rbx, 0          ; Stdin
-    mov rcx, x          ; Pointer
-    mov rdx, 10
+    mov eax, 3
+    mov ebx, 0          ; Stdin
+    mov ecx, x          ; Pointer
+    mov edx, 10
     int 80h
-    xor rcx,rcx
+    xor ecx,ecx
 
 loop:
 
-    xor r8,r8
-    mov r8b, x[ecx]     ; Iterates through the inputed number
-    cmp r8b, 0x0a       ; Check for end of input with an "enter" ascii value
+    xor ebx,ebx
+    mov ebx, x[ecx]     ; Iterates through the inputed number
+    cmp ebx, 0x0a       ; Check for end of input with an "enter" ascii value
     je clean_buff
     inc ecx
     jmp loop
 
 clean_buff:
 
-    xor r8b, r8b
-    xor bl,bl
+    xor ebx,ebx 
     mov al, x[ecx-1]
     sub al, 0x30        ; Get decimal values
     mov bl, 0x02
