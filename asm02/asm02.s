@@ -25,7 +25,7 @@ _start:
     jne error
     
     mov al,x[2]
-    cmp al,0
+    cmp al,10
     jne error
 
     mov eax, 4;
