@@ -63,9 +63,6 @@ sum:
     bswap edx
     jmp end
 
-sum99tox:
-
-
 _2digitnb:
     add dx,cx
     sub dx,0x3030
@@ -74,10 +71,14 @@ _2digitnb:
     cmp dl,0x3a
     jae cleanl
 
-    cmp dx,0x3a3a
+    cmp dx,0x3a39
     jl clean
 
-    
+    cmp dx,0x3a39
+    je cleanhto100
+
+    cmp dh,0x3a
+    jae cleanhto3
 
 cont:
 
@@ -123,7 +124,6 @@ cleanl:
     jmp cont
 
 cleanh:
-
     sub dh,0xa
     mov dl,0
     bswap edx
@@ -131,6 +131,26 @@ cleanh:
     mov dx,ax
     add dh,bl
     sub dh,0x30
+    jmp end
+
+cleanhto3:
+    sub dh,0xa
+    mov bl,dh
+    bswap edx
+    mov dh,bl
+    mov dl,0
+    bswap edx
+    mov dx,0x3031
+    jmp end
+
+cleanhto100:
+    sub dh,0xa
+    mov bl,dh
+    bswap edx
+    mov dh,bl
+    mov dl,0
+    bswap edx
+    mov dx,0x3031
     jmp end
 
 end:

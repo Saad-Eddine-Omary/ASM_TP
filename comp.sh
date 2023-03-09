@@ -1,3 +1,4 @@
 #!/bin/bash
-nasm -f elf64 -o $1 $2
-ld -s -o $3 $1
+file=$1 
+nasm -f elf -o $file.o $file.s
+ld -m elf_i386 -o $file $file.o
